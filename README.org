@@ -1,0 +1,69 @@
+#+title: Readme
+
+
+* To use:
+0. Have Stow and git installed; And, of course, each package as well;
+
+1. Git clone it (cd then 'git clone url')
+   #+begin_src bash
+    git clone <url>
+   #+end_src
+2. Navigate to the directory (default to ~/dotfiles, or simply 'cd ~/dotfiles' from anywhere)
+    #+begin_src bash
+    cd ~/dotfiles
+    #+end_src
+3. To get *all* the configs, simply:
+    #+begin_src bash
+    stow */
+    #+end_src
+4. If you wanna just some particular pkg config, say 'nvim':
+   #+begin_src bash
+    stow nvim
+   #+end_src
+
+
+
+* Currently includes configs for:
+1. doom
+2. foot
+3. nvim
+4. starship
+5. sway
+6. waybar
+
+
+* Useful commands:
+1. Removes symlinks created by Stow (cd ~/dotfiles first):
+#+begin_src
+    stow -D .
+#+end_src
+
+* File structure:
+#+begin_src bash
+tree -aL 3 ~/dotfiles
+#+end_src
+
+/home/filo/dotfiles
+├── README.org
+├── doom
+│   └── .config
+│       └── doom
+├── foot
+│   └── .config
+│       └── foot
+├── nvim
+│   └── .config
+│       └── nvim
+├── starship
+│   └── .config
+│       └── starship.toml
+├── sway
+│   └── .config
+│       └── sway
+└── waybar
+    └── .config
+        └── waybar
+
+18 directories, 2 files
+
+This repo was created with some AI help..

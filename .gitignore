@@ -1,0 +1,13 @@
+ # Vim/Neovim swap and backup files
+*.swp
+*.bak
+*~
+.netrwhist
+
+# Emacs backup files (for Doom)
+\#*\#
+.\#*
+
+# General OS files
+.DS_Store
+Thumbs.db

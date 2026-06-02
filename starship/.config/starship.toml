@@ -1,0 +1,56 @@
+add_newline = false
+
+format = """
+$os\
+${custom.bracket_open}\
+$username\
+$hostname\
+${custom.bracket_close} \
+$directory\
+$git_branch\
+$cmd_duration\
+$character"""
+
+[line_break]
+disabled = true
+
+[custom.bracket_open]
+command = "echo '['"
+when = "true"
+style = "bold green"
+format = "[$output]($style)"
+
+[custom.bracket_close]
+command = "echo ']'"
+when = "true"
+style = "bold green"
+format = "[$output]($style)"
+
+[os]
+disabled = false
+style = "bold cyan"
+symbols.Arch = "󰣇 "
+
+[username]
+show_always = true
+style_user = "bold green"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "bold green"
+format = "[@$hostname]($style)"
+
+[directory]
+style = "bold blue"
+format = "[$path]($style)[$read_only](red)"
+read_only = " \uf023"
+#read_only_style = "red"
+
+[cmd_duration]
+min_time = 500
+format = " took [$duration](yellow)"
+
+[character]
+success_symbol = " [❯](bold white) "
+error_symbol = " [❯](bold red) "
