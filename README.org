@@ -35,6 +35,7 @@
 (In case you use Arch and wanna install all of these, except doom...,:
 #+begin_src bash
  sudo pacman -S foot nvim starship sway waybar
+ sudo pacman -S ttf-font-awesome ttf-jetbrains-mono-nerd noto-fonts-emoji
 #+end_src
 
 
@@ -42,6 +43,7 @@
 1. Removes symlinks created by Stow (cd ~/dotfiles first):
 #+begin_src
     stow -D .
+    fc-cache -fv
 #+end_src
 
 * File structure:
