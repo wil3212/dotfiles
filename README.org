@@ -42,28 +42,28 @@
 #+begin_src bash
 tree -aL 3 ~/dotfiles
 #+end_src
+   #+begin_src bash
+      /home/filo/dotfiles
+      ├── README.org
+      ├── doom
+      │   └── .config
+      │       └── doom
+      ├── foot
+      │   └── .config
+      │       └── foot
+      ├── nvim
+      │   └── .config
+      │       └── nvim
+      ├── starship
+      │   └── .config
+      │       └── starship.toml
+      ├── sway
+      │   └── .config
+      │       └── sway
+      └── waybar
+          └── .config
+              └── waybar
 
-/home/filo/dotfiles
-├── README.org
-├── doom
-│   └── .config
-│       └── doom
-├── foot
-│   └── .config
-│       └── foot
-├── nvim
-│   └── .config
-│       └── nvim
-├── starship
-│   └── .config
-│       └── starship.toml
-├── sway
-│   └── .config
-│       └── sway
-└── waybar
-    └── .config
-        └── waybar
-
-18 directories, 2 files
-
+      18 directories, 2 files
+   #+end_src
 This repo was created with some AI help..
