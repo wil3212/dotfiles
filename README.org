@@ -6,7 +6,8 @@
 
 1. Git clone it (cd then 'git clone url')
    #+begin_src bash
-    git clone <url>
+    cd
+    git clone https://github.com/wil3212/dotfiles.git
    #+end_src
 2. Navigate to the directory (default to ~/dotfiles, or simply 'cd ~/dotfiles' from anywhere)
     #+begin_src bash
