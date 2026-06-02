@@ -32,6 +32,11 @@
 5. sway
 6. waybar
 
+(In case you use Arch and wanna install all of these, except doom...,:
+#+begin_src bash
+ sudo pacman -S foot nvim starship sway waybar
+#+end_src
+
 
 * Useful commands:
 1. Removes symlinks created by Stow (cd ~/dotfiles first):
