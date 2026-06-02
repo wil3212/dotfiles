@@ -45,6 +45,16 @@
     stow -D .
     fc-cache -fv
 #+end_src
+* It is recommended that:
+1. You back up your original config before using this to avoid conflicts
+   A good way to do so is to rename then to "<config>_bak"; E.g:
+   #+begin_src bash
+   mv .bashrc .bashrc_bak
+   #+end_src
+2. File paths
+   Some configs requires, for example, a path to an image (such as .bashrc) or other files;
+   (some of this should be fixed later)
+
 
 * File structure:
 #+begin_src bash
