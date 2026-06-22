@@ -1,5 +1,6 @@
 -- options.lua     
 
+vim.opt.cursorline = true
 vim.cmd('colorscheme vim')
 -- Line numbers
 vim.opt.number = true
@@ -26,7 +27,7 @@ vim.opt.autoindent = true   -- Enables automatic indentation on new lines
 vim.opt.softtabstop = 4     -- Number of spaces a <Tab> counts for when typing in Insert mode
 
 -- Mantém 999 linhas de distância das bordas, forçando o cursor ao centro
-vim.opt.scrolloff = 999
+vim.opt.scrolloff = 2
 
  -- Remove o fundo (bg) e a cor de destaque do Conceal
 vim.api.nvim_set_hl(0, 'Conceal', { bg = 'none', fg = 'none' })

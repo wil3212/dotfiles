@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: Base Lógica Formal
+# key: base
+# --
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{logicproof} % For the red box (Fitch-style)
+\usepackage{bussproofs} % For the green box (Gentzen-style)
+\usepackage{forest}     % For the pink box (Semantic Tableaux)
+\usepackage{preview}
+\PreviewEnvironment{logicproof}
+
+\title{${1:Exercicios de revisão}}
+\author{William Falenski}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item $0
+\end{enumerate}
+
+\end{document}

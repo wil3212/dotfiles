@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Base Documento LaTeX
+# key: base
+# --
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{$1}
+\author{William Falenski}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+$0
+
+\end{document}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Subproof
+# key: subp
+# --
+\begin{subproof}
+    $1 & $2 \\
+    $0
+\end{subproof}

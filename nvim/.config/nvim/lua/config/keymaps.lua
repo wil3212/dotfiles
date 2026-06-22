@@ -11,7 +11,7 @@ vim.keymap.set("n", "<leader>z", function()
   
   if current_scrolloff == 999 then
     -- Se estiver ligado, desliga (0 deixa o cursor tocar as bordas, 8 deixa uma margem)
-    vim.opt.scrolloff = 5 
+    vim.opt.scrolloff = 2 
     print("Zen Scroll: OFF")
   else
     -- Se estiver desligado, trava o cursor no meio da tela

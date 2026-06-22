@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Logic Proof
+# key: lp
+# --
+\begin{logicproof}{1}
+    $1 & $2 \\
+    $0
+\end{logicproof}

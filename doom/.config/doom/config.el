@@ -33,30 +33,6 @@
 (advice-add 'org-toggle-checkbox :after #'my/org-checkbox-timestamp)
 (setq doom-theme 'doom-acario-dark)
 
-;; --------------------------------------
-
-(after! org
-  ;; Force org-mode timestamps to log down to the exact second
-  ;;(setq org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>"))
-  (setq org-clock-out-remove-zero-time-clocks nil)
-;; Strip out Doom's default "t" (Personal todo)
-;;(setq org-capture-templates (assq-delete-all "t" org-capture-templates))
-  ;; Append custom capture templates
-  (setq org-capture-templates
-      ;;(append org-capture-templates
-                '(
-                  ;; Time Tracker Template
-                  ("t" "Start Time Tracker" entry
-                   (file+datetree "~/org-roam/Time.org")
-                   "* %^{Activity|Work|Study|Programming|Personal}\n%?"
-                   :clock-in t :clock-keep t)
-
-                  ;; Money Tracker Template
-                  ("m" "Log Transaction" table-line
-                   (file+headline "~/org-roam/Money.org" "Transactions")
-                   "| %<%Y-%m-%d %H:%M:%S> | %^{Type|Expense|Income} | %^{Category|RU|Transport|Hardware|Bills} | %^{Amount} |"
-                   :kill-buffer t))))
-
 ;; This elisp code uses use-package, a macro to simplify configuration. It will
 ;; install it if it's not available, so please edit the following code as
 ;; appropriate before running it.
@@ -272,3 +248,69 @@
   ;("<leader>tc" . 'centered-cursor-mode)
   ;)
 )
+
+(after! org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)))) ; This enables both C and C++
+
+(after! org
+  (setq org-capture-templates (assoc-delete-all "t" org-capture-templates))
+  ;; 1. Use setq-default to enforce global timestamp formats against overwrites
+  (setq-default org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>"))
+  (setq org-clock-out-remove-zero-time-clocks nil)
+
+  ;; 2. Function to dynamically read previous activities from time.org
+;;(defun my/get-time-activities ()
+;;  "Parse time.org for existing Level 4 activities to use in autocompletion."
+;;  (let ((acts nil)
+;;        (time-file (expand-file-name "~/org-roam/time.org")))
+;;    (when (file-exists-p time-file)
+;;      (with-temp-buffer
+;;        (insert-file-contents time-file)
+;;        (goto-char (point-min))
+;;        ;; Regex to find all level 4 headings and capture the text after it
+;;        (while (re-search-forward "^\\*\\{4\\} \\(.*\\)" nil t)
+;;          (add-to-list 'acts (match-string-no-properties 1)))))
+;;    acts))
+  (defun my/get-time-activities ()
+  "Use Org's native parser to extract Level 4 headings from Time.org."
+  (let ((acts nil)
+        (time-file (expand-file-name "~/org-roam/Time.org")))
+    (when (file-exists-p time-file)
+      ;; find-file-noselect reads the active buffer, including unsaved changes
+      (with-current-buffer (find-file-noselect time-file)
+        ;; natively parse the tree structure for level 4 items
+        (org-map-entries
+         (lambda ()
+           ;; org-heading-components returns a list where the 5th item (index 4) is the clean text
+           (push (nth 4 (org-heading-components)) acts))
+         "LEVEL=4")))
+    (if acts
+        (delete-dups acts)
+      '("Programming" "Study" "Personal" "Work"))))
+  ;; 3. Wipe default templates
+  (setq org-capture-templates (assq-delete-all "t" org-capture-templates))
+
+  ;; 4. Inject the dynamic function into the template
+  (setq org-capture-templates
+        (append org-capture-templates
+                '(
+                  ("t" "Start Time Tracker" entry
+                   (file+datetree "~/org-roam/Time.org")
+                   ;; %(...) executes Lisp. completing-read gives you the UI menu.
+                   "* %(completing-read \"Activity: \" (my/get-time-activities))\n%?"
+                   :clock-in t :clock-keep t)
+
+                  ("m" "Log Transaction" table-line
+                   (file+headline "~/org-roam/money.org" "Transactions")
+                   "| %<%Y-%m-%d %H:%M:%S> | %^{Type|Expense|Income} | %^{Category|RU|Transport|Hardware|Bills} | %^{Amount} |"
+                   :kill-buffer t)))))
+
+;; Ativa o highlight de parênteses correspondentes globalmente
+(show-smartparens-global-mode +1)
+;; Faz j e k navegarem puramente por linhas visuais
+;;  (map! :n "j" #'evil-next-visual-line
+;;      :n "k" #'evil-previous-visual-line
+;;      :v "j" #'evil-next-visual-line
+;;      :v "k" #'evil-previous-visual-line)
